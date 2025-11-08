@@ -15,6 +15,7 @@ public class SFXManager : MonoBehaviour
     private AudioSource SFXaudioSource;
 
     private AudioSource BgMusicAudioSource;
+    private float targetMusicVoume;
 
     public void Awake()
     {
@@ -22,11 +23,19 @@ public class SFXManager : MonoBehaviour
         //GameObject child = this.transform.Find("BgMusic").gameObject;
         BgMusicAudioSource = gameObject.transform.Find("BgMusic").gameObject.GetComponent<AudioSource>();
 
-
+        targetMusicVoume = BgMusicAudioSource.volume;
+        BgMusicAudioSource.volume = 0f;
         
         //BgMusicAudioSource.GetComponent<AudioSource>().Play();       
     }
 
+    public void Update()
+    {
+        if (BgMusicAudioSource.volume != targetMusicVoume) 
+        {
+            BgMusicAudioSource.volume = Mathf.Min(BgMusicAudioSource.volume + (0.1f * Time.deltaTime), targetMusicVoume);
+        }
+    }
 
 
     //called in the PlayerController Script
