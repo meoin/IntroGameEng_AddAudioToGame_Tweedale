@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFXManager : MonoBehaviour
 {
@@ -31,24 +32,28 @@ public class SFXManager : MonoBehaviour
     //called in the PlayerController Script
     public void PlayerShoot()
     {
+        SFXaudioSource.pitch = Random.Range(0.9f, 1.2f);
         SFXaudioSource.PlayOneShot(playerShoot);
     }
 
     //called in the PlayerController Script
     public void PlayerDamage()
     {
-        SFXaudioSource.PlayOneShot(playerDamage);
+       SFXaudioSource.pitch = 1f;
+       SFXaudioSource.PlayOneShot(playerDamage);
     }
 
     //called in the PlayerController Script
     public void PlayerExplosion()
     {
+        SFXaudioSource.pitch = 1f;
         SFXaudioSource.PlayOneShot(playerExplosion);
     }
 
     //called in the AsteroidDestroy script
     public void AsteroidExplosion()
     {
+        SFXaudioSource.pitch = 1f;
         SFXaudioSource.PlayOneShot(asteroidExplosion);
     }
 
